@@ -161,7 +161,7 @@
         <jackson.version>1.9.11</jackson.version>
         <jansi.version>1.8</jansi.version>
         <javassist.version>3.17.1-GA</javassist.version>
-        <jasig-portlet-utils.version>1.0.1</jasig-portlet-utils.version> 
+        <jasig-portlet-utils.version>1.1.0</jasig-portlet-utils.version> 
         <jasypt.version>1.9.0</jasypt.version>
         <jaxb2basics.version>0.6.4</jaxb2basics.version>
         <jdom.version>1.0</jdom.version>
@@ -749,6 +749,17 @@
             </dependency>
             <dependency>
                 <groupId>org.jasig.portlet.utils</groupId>
+                <artifactId>portlet-ws-util</artifactId>
+                <version>${jasig-portlet-utils.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jasig.portlet.utils</groupId>
                 <artifactId>portlet-jdbc-util</artifactId>
                 <version>${jasig-portlet-utils.version}</version>
                 <exclusions>
@@ -1313,11 +1324,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-war-plugin</artifactId>
-<<<<<<< Updated upstream
-                    <version>2.2</version>
-=======
                     <version>2.3</version>
->>>>>>> Stashed changes
                 </plugin>
                 <plugin>
                     <groupId>org.apache.portals.pluto</groupId>
