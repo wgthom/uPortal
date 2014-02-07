@@ -257,7 +257,10 @@ var up = up || {};
 
                 // initialize the pager and set it to 6 items per page.
                 that.state.pager = fluid.pager($(container).find(".portlet-results"), pagerOptions);
-                that.state.pager.events.onModelChange.addListener(that.dragManager.initDragAndDrop);
+                that.state.pager.events.onModelChange.addListener(function (newModel, oldModel) {
+                    // "Boiled" event to match the previous method sig -- suggestion from abasman
+                    that.dragManager.initDragAndDrop(newModel, oldModel, that.state.pager);
+                });
                 that.state.pager.events.initiatePageSizeChange.fire(that.options.pageSize);
             }//end:if.
         };//end:function.

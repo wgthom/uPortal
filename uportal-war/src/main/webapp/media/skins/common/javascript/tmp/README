@@ -1,0 +1,8 @@
+## IMPORTANT NOTE ##
+
+Placing Fluid tech in here temporarily for the sake of the 'UP-3922-feature-branch'
+feature branch.  NONE of this stuff, including the tmp/ folder, is intended to make 
+its way into master.  Once we're certain we have all the commits we need from Fluid, 
+we will cut a private-label Infusion release and put it in the ResourceServer/.
+
+On the way to that happy conclusion, we can update the file(s) in here as needed.
