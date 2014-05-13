@@ -52,27 +52,28 @@
     <script src="/ResourceServingWebapp/rs/jquery-plugins/rating/1.0/bootstrap-rating-input.min.js" type="text/javascript"> </script>
     <script src="/ResourceServingWebapp/rs/datatables/1.9.4/plugins/integration/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"> </script>
     <script src="/ResourceServingWebapp/rs/datatables/1.9.4/extras/column-filter-widgets/js/ColumnFilterWidgets.js" type="text/javascript"> </script>
-    <script src="/uPortal/rs/conflict-resolution/js/resolve-conflicts.min.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-util.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-portlet-registry.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-entity-registry.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-portlet-browser.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-layout-draggable-manager.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-layout-gallery.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-fragment-permissions-manager.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-subscription-browser.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-layout-selector.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-skin-selector.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-tab-manager.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-layout-persistence.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-url-provider.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-layout-preferences.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-autocomplete.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-showHideToggle.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/entity-selector.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-parameter-editor.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/flyout-nav.js" type="text/javascript"> </script>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-translator.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/rs/conflict-resolution/js/resolve-conflicts.min.js"
+            type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-util.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-portlet-registry.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-entity-registry.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-portlet-browser.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-layout-draggable-manager.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-layout-gallery.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-fragment-permissions-manager.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-subscription-browser.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-layout-selector.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-skin-selector.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-tab-manager.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-layout-persistence.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-url-provider.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-layout-preferences.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-autocomplete.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-showHideToggle.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/entity-selector.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-parameter-editor.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/flyout-nav.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-translator.js" type="text/javascript"> </script>
     <%-- No sidebar yet
     <script src="/uPortal/media/skins/common/javascript/uportal/up-sidebar-improved.js" type="text/javascript"> </script>
     --%>
@@ -83,15 +84,15 @@
     Not ready to deal with Google Analytics.
     <script src="/uPortal/media/skins/common/javascript/uportal/up-ga.js" type="text/javascript"> </script>
     --%>
-    <script src="/uPortal/media/skins/common/javascript/uportal/up-rating-option.js" type="text/javascript"> </script>
+    <script src="${pageContext.request.contextPath}/media/skins/common/javascript/uportal/up-rating-option.js" type="text/javascript"> </script>
     <%-- Not ready to give users ability to favorite from portlet
     <script src="/uPortal/media/skins/common/javascript/uportal/up-favorite.js" type="text/javascript"> </script>
     --%>
 
     <%-- Simulates the effect of the dynamic skin portlet --%>
-    <link rel="stylesheet" type="text/css" href="/uPortal/media/skins/respondr/defaultSkin.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/media/skins/respondr/defaultSkin.css"/>
 
-    <link rel="shortcut icon" href="/uPortal/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon"/>
 
     <script type="text/javascript">
         var up = up || {};
