@@ -6,11 +6,11 @@ p = new StemSave(s).assignName("apps:portal").assignDisplayExtension("uPortal").
 r = new StemSave(s).assignName("apps:portal:roles").assignDisplayExtension("uPortal Roles").save();
 
 /** Role Definitions **/
-portalSystem = new GroupSave(s).assignName("apps:portal:roles:portalSystem").assignTypeOfGroup(TypeOfGroup.role).save();
-portalAdmin = new GroupSave(s).assignName("apps:portal:roles:portalAdministrator").assignTypeOfGroup(TypeOfGroup.role).save();
-portalDev = new GroupSave(s).assignName("apps:portal:roles:portalDeveloper").assignTypeOfGroup(TypeOfGroup.role).save();
-portalFrag = new GroupSave(s).assignName("apps:portal:roles:portalFragmentOwner").assignTypeOfGroup(TypeOfGroup.role).save();
-everyone = new GroupSave(s).assignName("apps:portal:roles:portalEveryone").assignTypeOfGroup(TypeOfGroup.role).save();
+portalSystem = new GroupSave(s).assignName("apps:portal:roles:system").assignDisplayExtension("System").assignTypeOfGroup(TypeOfGroup.role).save();
+portalAdmin = new GroupSave(s).assignName("apps:portal:roles:administrator").assignDisplayExtension("Administrator").assignTypeOfGroup(TypeOfGroup.role).save();
+portalDev = new GroupSave(s).assignName("apps:portal:roles:developer").assignDisplayExtension("Developer").assignTypeOfGroup(TypeOfGroup.role).save();
+portalFrag = new GroupSave(s).assignName("apps:portal:roles:fragmentOwner").assignDisplayExtension("Fragment Owner").assignTypeOfGroup(TypeOfGroup.role).save();
+everyone = new GroupSave(s).assignName("apps:portal:roles:everyone").assignDisplayExtension("Everyone").assignTypeOfGroup(TypeOfGroup.role).save();
 
 /** Role Inheritance **/
 portalAdmin.getRoleInheritanceDelegate().addRoleToInheritFromThis(portalSystem);
