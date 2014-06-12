@@ -152,7 +152,7 @@
         <google-visualization.version>1.1.1</google-visualization.version>
         <guava.version>16.0.1</guava.version>
         <groovy.version>2.2.2</groovy.version>
-        <grouperClient.version>1.6.3</grouperClient.version>
+        <grouperClient.version>2.1.5</grouperClient.version>
         <hibernate.version>4.1.9.Final</hibernate.version>
         <hibernate-jpamodelgen.version>1.2.0.Final</hibernate-jpamodelgen.version>
         <hibernate-jpa-api.version>1.0.1.Final</hibernate-jpa-api.version>
