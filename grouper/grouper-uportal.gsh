@@ -1,9 +1,98 @@
 s = GrouperSession.startRootSession();
 
+root = "apps";
+portal = root + ":portal";
+etc = portal + ":etc";
+roles = portal + ":roles";
+perms = portal + ":permissions";
+portlets = portal + ":portlets";
+
 /** Folders **/
-a = new StemSave(s).assignName("apps").assignDisplayExtension("Applications").save();
-p = new StemSave(s).assignName("apps:portal").assignDisplayExtension("uPortal").save();
-r = new StemSave(s).assignName("apps:portal:roles").assignDisplayExtension("uPortal Roles").save();
+rootStem = new StemSave(s).assignName(apps).assignDisplayExtension("Applications").save();
+portalStem = new StemSave(s).assignName(portal).assignDisplayExtension("uPortal").save();
+portalEtcStem = new StemSave(s).assignName(etc).assignDisplayExtension("etc").save();
+roles = new StemSave(s).assignName(roles).assignDisplayExtension("Roles").save();
+perms = new StemSave(s).assignName(perms).assignDisplayExtension("Permissions").save();
+portlets = new StemSave(s).assignName(portlets).assignDisplayExtension("Portlets").save();
+
+/** Permission Definitions **/
+permErrorChan = perms + ":UP_ERROR_CHAN";
+permErrorChanStem = new StemSave(s).assignName(permErrorChan).assignDisplayExtension("Error Channel").save();
+errorChanPermDef = new AttributeDefSave(s).assignName(permErrorChan + ":errorChanPermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
+errorChanPermDef.getAttributeDefActionDelegate().addAction("VIEW");
+errorChanDetails = new AttributeDefNameSave(s, errorChanPermDef).assignName(permErrorChan " +:DETAILS").assignDisplayExtension("DETAILS").save();
+
+permFragment = perms + ":UP_FRAGMENT";
+permFragmentStem = new StemSave(s).assignName(permFragment).assignDisplayExtension("Fragments").save();
+fragmentPermDef = new AttributeDefSave(s).assignName(permFragment + ":fragmentPermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
+fragmentPermDef.getAttributeDefActionDelegate().addAction("FRAGMENT_SUBSCRIBE");
+// todo where are fragment resources defined?  <group>Subscribable Fragments</group>
+
+permGroups = perms + ":UP_GROUPS";
+permGroupsStem = new StemSave(s).assignName(permGroups).assignDisplayExtension("Groups").save();
+groupsPermDef = new AttributeDefSave(s).assignName(permGroups + ":groupsPermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
+groupsPermDef.getAttributeDefActionDelegate().addAction("VIEW_GROUP");
+groupsPermDef.getAttributeDefActionDelegate().addAction("EDIT_GROUP");
+groupsPermDef.getAttributeDefActionDelegate().addAction("DELETE_GROUP");
+groupsPermDef.getAttributeDefActionDelegate().addAction("CREATE_GROUP");
+
+permPermissions = perms + ":UP_PERMISSIONS";
+permPermissionsStem = new StemSave(s).assignName(permPermissions).assignDisplayExtension("uPortal Permissions").save();
+permissionsPermDef = new AttributeDefSave(s).assignName(permGroups + ":permissionsPermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
+permissionsPermDef.getAttributeDefActionDelegate().addAction("EDIT_PERMISSIONS");
+permissionsPermDef.getAttributeDefActionDelegate().addAction("VIEW_PERMISSIONS");
+
+permPortletPublish = perms + ":UP_PORTLET_PUBLISH";
+permPortletPublishStem = new StemSave(s).assignName(permPortletPublish).assignDisplayExtension("Portlet Publishing").save();
+portletPublishingPermDef = new AttributeDefSave(s).assignName(permPortletPublish + ":portletPublishPermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
+portletPublishingPermDef.getAttributeDefActionDelegate().addAction("SELECT_PORTLET_TYPE");
+portletPublishingPermDef.getAttributeDefActionDelegate().addAction("MANAGE_CREATED");
+portletPublishingPermDef.getAttributeDefActionDelegate().addAction("MANAGE_APPROVED");
+portletPublishingPermDef.getAttributeDefActionDelegate().addAction("MANAGE");
+portletPublishingPermDef.getAttributeDefActionDelegate().addAction("MANAGE_EXPIRED");
+portletPublishingPermDef.getAttributeDefActionDelegate().addAction("PORTLET_MODE_CONFIG");
+
+permPortletSubscribe = perms + ":UP_PORTLET_SUBSCRIBE";
+permPortletSubscribeStem = new StemSave(s).assignName(permPortletSubscribe).assignDisplayExtension("Portlet Subscribing").save();
+portletSubscribePermDef = new AttributeDefSave(s).assignName(permPortletSubscribe + ":portletSubscribePermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
+portletSubscribePermDef.getAttributeDefActionDelegate().addAction("BROWSE");
+portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE");
+portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE_APPROVED");
+portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE_CREATED");
+portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE_EXPIRED");
+
+/** Permissions controlling the base uPortal system **/
+permDef.getAttributeDefActionDelegate().addAction("UP_SYSTEM:ALL_PERMISSIONS");
+permDef.getAttributeDefActionDelegate().addAction("UP_SYSTEM:CUSTOMIZE");
+permDef.getAttributeDefActionDelegate().addAction("UP_SYSTEM:ADD_TAB");
+
+/** Permissions controlling uPortal user account management **/
+permDef.getAttributeDefActionDelegate().addAction("UP_USERS:VIEW_USER_ATTRIBUTE");
+permDef.getAttributeDefActionDelegate().addAction("UP_USERS:VIEW_USER");
+permDef.getAttributeDefActionDelegate().addAction("UP_USERS:DELETE_USER");
+permDef.getAttributeDefActionDelegate().addAction("UP_USERS:EDIT_USER_ATTRIBUTE");
+permDef.getAttributeDefActionDelegate().addAction("UP_USERS:EDIT_USER");
+permDef.getAttributeDefActionDelegate().addAction("UP_USERS:IMPERSONATE");
+
+/** Action Hierarchy ** /
+manage = permDef.getAttributeDefActionDelegate().findAction("UP_PORTLET_PUBLISH:MANAGE", true);
+manageApproved = permDef.getAttributeDefActionDelegate().findAction("UP_PORTLET_PUBLISH:MANAGE_APPROVED", true);
+manageCreated = permDef.getAttributeDefActionDelegate().findAction("UP_PORTLET_PUBLISH:MANAGE_CREATED", true);
+manageExpired = permDef.getAttributeDefActionDelegate().findAction("UP_PORTLET_PUBLISH:MANAGE_EXPIRED", true);
+manageExpired.getAttributeAssignActionSetDelegate().addToAttributeAssignActionSet(manage);
+manageExpired.getAttributeAssignActionSetDelegate().addToAttributeAssignActionSet(manageApproved);
+manageExpired.getAttributeAssignActionSetDelegate().addToAttributeAssignActionSet(manageCreated);
+manage.getAttributeAssignActionSetDelegate().addToAttributeAssignActionSet(manageCreated);
+manage.getAttributeAssignActionSetDelegate().addToAttributeAssignActionSet(manageApproved);
+manageApproved.getAttributeAssignActionSetDelegate().addToAttributeAssignActionSet(manageCreated);
+
+subscribe = permDef.getAttributeDefActionDelegate().findAction("UP_PORTLET_SUBSCRIBE:SUBSCRIBE", true);
+subscribeApproved = permDef.getAttributeDefActionDelegate().findAction("UP_PORTLET_SUBSCRIBE:SUBS
+
+
+
+
+
 
 /** Role Definitions **/
 portalSystem = new GroupSave(s).assignName("apps:portal:roles:system").assignDisplayExtension("System").assignTypeOfGroup(TypeOfGroup.role).save();
@@ -25,12 +114,20 @@ portalFrag.getRoleInheritanceDelegate().addRoleToInheritFromThis(portalSystem);
 /** Permission Definitions **/
 permDef = new AttributeDefSave(s).assignName("apps:portal:roles:portalPermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
 
+
+
+
+
+
 /** Resources **/
 /** The portal **/
 portal = new AttributeDefNameSave(s, permDef).assignName("apps:portal:roles:portal").assignDisplayExtension("Portal").save();
 
 /** Portlets **/
 // TODO add portlets
+pAttachments = new AttributeDefNameSave(s, permDef).assignName("apps:portal:attachmentsPortlet").assignDisplayExtension("Attachments Portlet").save();
+
+
 
 /** Portlet Categories **/
 allPortlets = new AttributeDefNameSave(s, permDef).assignName("apps:portal:roles:allPortlets").assignDisplayExtension("All Portlets").save();
