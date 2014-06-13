@@ -42,6 +42,7 @@ permissionsPermDef = new AttributeDefSave(s).assignName(permGroups + ":permissio
 permissionsPermDef.getAttributeDefActionDelegate().addAction("EDIT_PERMISSIONS");
 permissionsPermDef.getAttributeDefActionDelegate().addAction("VIEW_PERMISSIONS");
 
+/** Permissions controlling the publishing and editing of uPortal content **/
 permPortletPublish = perms + ":UP_PORTLET_PUBLISH";
 permPortletPublishStem = new StemSave(s).assignName(permPortletPublish).assignDisplayExtension("Portlet Publishing").save();
 portletPublishingPermDef = new AttributeDefSave(s).assignName(permPortletPublish + ":portletPublishPermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
@@ -52,29 +53,7 @@ portletPublishingPermDef.getAttributeDefActionDelegate().addAction("MANAGE");
 portletPublishingPermDef.getAttributeDefActionDelegate().addAction("MANAGE_EXPIRED");
 portletPublishingPermDef.getAttributeDefActionDelegate().addAction("PORTLET_MODE_CONFIG");
 
-permPortletSubscribe = perms + ":UP_PORTLET_SUBSCRIBE";
-permPortletSubscribeStem = new StemSave(s).assignName(permPortletSubscribe).assignDisplayExtension("Portlet Subscribing").save();
-portletSubscribePermDef = new AttributeDefSave(s).assignName(permPortletSubscribe + ":portletSubscribePermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
-portletSubscribePermDef.getAttributeDefActionDelegate().addAction("BROWSE");
-portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE");
-portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE_APPROVED");
-portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE_CREATED");
-portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE_EXPIRED");
-
-/** Permissions controlling the base uPortal system **/
-permDef.getAttributeDefActionDelegate().addAction("UP_SYSTEM:ALL_PERMISSIONS");
-permDef.getAttributeDefActionDelegate().addAction("UP_SYSTEM:CUSTOMIZE");
-permDef.getAttributeDefActionDelegate().addAction("UP_SYSTEM:ADD_TAB");
-
-/** Permissions controlling uPortal user account management **/
-permDef.getAttributeDefActionDelegate().addAction("UP_USERS:VIEW_USER_ATTRIBUTE");
-permDef.getAttributeDefActionDelegate().addAction("UP_USERS:VIEW_USER");
-permDef.getAttributeDefActionDelegate().addAction("UP_USERS:DELETE_USER");
-permDef.getAttributeDefActionDelegate().addAction("UP_USERS:EDIT_USER_ATTRIBUTE");
-permDef.getAttributeDefActionDelegate().addAction("UP_USERS:EDIT_USER");
-permDef.getAttributeDefActionDelegate().addAction("UP_USERS:IMPERSONATE");
-
-/** Action Hierarchy ** /
+/** UP_PORTLET_PUBLISH Action Hierarchy ** /
 manage = permDef.getAttributeDefActionDelegate().findAction("UP_PORTLET_PUBLISH:MANAGE", true);
 manageApproved = permDef.getAttributeDefActionDelegate().findAction("UP_PORTLET_PUBLISH:MANAGE_APPROVED", true);
 manageCreated = permDef.getAttributeDefActionDelegate().findAction("UP_PORTLET_PUBLISH:MANAGE_CREATED", true);
@@ -85,6 +64,40 @@ manageExpired.getAttributeAssignActionSetDelegate().addToAttributeAssignActionSe
 manage.getAttributeAssignActionSetDelegate().addToAttributeAssignActionSet(manageCreated);
 manage.getAttributeAssignActionSetDelegate().addToAttributeAssignActionSet(manageApproved);
 manageApproved.getAttributeAssignActionSetDelegate().addToAttributeAssignActionSet(manageCreated);
+
+
+
+
+
+
+permPortletSubscribe = perms + ":UP_PORTLET_SUBSCRIBE";
+permPortletSubscribeStem = new StemSave(s).assignName(permPortletSubscribe).assignDisplayExtension("Portlet Subscribing").save();
+portletSubscribePermDef = new AttributeDefSave(s).assignName(permPortletSubscribe + ":portletSubscribePermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
+portletSubscribePermDef.getAttributeDefActionDelegate().addAction("BROWSE");
+portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE");
+portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE_APPROVED");
+portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE_CREATED");
+portletSubscribePermDef.getAttributeDefActionDelegate().addAction("SUBSCRIBE_EXPIRED");
+
+permPortalSystem = perms + ":UP_SYSTEM";
+permPortalSystemStem = new StemSave(s).assignName(permPortalSystem).assignDisplayExtension("uPortal System").save();
+portalSystemPermDef = new AttributeDefSave(s).assignName(permPortalSystem + ":portalSystemPermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
+portalSystemPermDef.getAttributeDefActionDelegate().addAction("ALL_PERMISSIONS");
+portalSystemPermDef.getAttributeDefActionDelegate().addAction("CUSTOMIZE");
+portalSystemPermDef.getAttributeDefActionDelegate().addAction("ADD_TAB");
+
+/** Permissions controlling uPortal user account management **/
+permUsers = perms + ":UP_USERS";
+permUsersStem = new StemSave(s).assignName(permUsers).assignDisplayExtension("Users").save();
+usersPermDef = new AttributeDefSave(s).assignName(permUsers + ":usersPermDef").assignAttributeDefType(AttributeDefType.perm).assignToEffMembership(true).assignToGroup(true).save();
+usersPermDef.getAttributeDefActionDelegate().addAction("VIEW_USER_ATTRIBUTE");
+usersPermDef.getAttributeDefActionDelegate().addAction("VIEW_USER");
+usersPermDef.getAttributeDefActionDelegate().addAction("DELETE_USER");
+usersPermDef.getAttributeDefActionDelegate().addAction("EDIT_USER_ATTRIBUTE");
+usersPermDef.getAttributeDefActionDelegate().addAction("EDIT_USER");
+usersPermDef.getAttributeDefActionDelegate().addAction("IMPERSONATE");
+
+
 
 subscribe = permDef.getAttributeDefActionDelegate().findAction("UP_PORTLET_SUBSCRIBE:SUBSCRIBE", true);
 subscribeApproved = permDef.getAttributeDefActionDelegate().findAction("UP_PORTLET_SUBSCRIBE:SUBS
