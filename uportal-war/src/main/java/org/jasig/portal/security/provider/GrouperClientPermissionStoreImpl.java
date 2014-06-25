@@ -19,9 +19,10 @@
 
 package org.jasig.portal.security.provider;
 
+import edu.internet2.middleware.grouperClient.api.GcFindGroups;
 import edu.internet2.middleware.grouperClient.api.GcGetPermissionAssignments;
-import edu.internet2.middleware.grouperClient.ws.beans.WsGetPermissionAssignmentsResults;
-import edu.internet2.middleware.grouperClient.ws.beans.WsPermissionAssign;
+import edu.internet2.middleware.grouperClient.api.GcGetSubjects;
+import edu.internet2.middleware.grouperClient.ws.beans.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jasig.portal.AuthorizationException;
@@ -853,6 +854,8 @@ public class GrouperClientPermissionStoreImpl implements IPermissionStore {
             //String resource = "apps:portal:permissions:UP_ERROR_CHAN:DETAILS";
             //String permType = "role"; // role or role_subject per GcGetPermissionsAssignments.assignPermissionType()
             //String action = "VIEW";
+            List<IPermission> gperms = new ArrayList<IPermission>();
+
 
             String permDef = "apps:portal:permissions:" + owner + ":errorChanPermDef";
             String action = activity;
@@ -861,7 +864,28 @@ public class GrouperClientPermissionStoreImpl implements IPermissionStore {
             WsGetPermissionAssignmentsResults results = gcGetPermissionAssignments.execute();
             WsPermissionAssign[] wsPermissionAssign = results.getWsPermissionAssigns();
             if (results.getWsPermissionAssigns().length > 0) {
-                System.out.println(wsPermissionAssign[0]);
+                WsPermissionAssign permissionAssign = results.getWsPermissionAssigns()[0];
+                IPermission gperm = new PermissionImpl(owner);
+                String subjectId = permissionAssign.getRoleId();
+                GcFindGroups gcFindGroups = new GcFindGroups().addGroupUuid(subjectId);
+                WsFindGroupsResults wsFindGroupsResults = gcFindGroups.execute();
+                if (wsFindGroupsResults.getGroupResults().length > 0) {
+                    WsGroup wsGroup = wsFindGroupsResults.getGroupResults()[0];
+                    gperm.setPrincipal(wsGroup.getExtension());
+                }
+
+                gperm.setActivity(permissionAssign.getAction());
+                String resource = permissionAssign.getAttributeDefNameName();
+                gperm.setTarget(resource.substring(resource.lastIndexOf(":") + 1));
+
+                if ("F".equals(permissionAssign.getDisallowed())) {
+                    gperm.setType(IPermission.PERMISSION_TYPE_GRANT);
+                } else {
+                    gperm.setType(IPermission.PERMISSION_TYPE_DENY);
+                }
+
+                gperms.add(gperm);
+                return (IPermission[])gperms.toArray(new IPermission[gperms.size()]);
             }
         }
 
