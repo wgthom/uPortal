@@ -106,7 +106,7 @@ Once the permission definition, the subject, and the target are defined we can m
 With this assignment, any person in the Portal Developer role will have the permission to VIEW the DETAILS of the Error Channel.
 
 ### uPortal IPermissionStoreImpl and the GrouperClient
-With the permissions modeled in grouper the next step is to integrated the GrouperClient.  The ![GrouperClient](https://spaces.internet2.edu/display/Grouper/Grouper+Client)
+With the permissions modeled in grouper the next step is to integrated the [GrouperClient](https://spaces.internet2.edu/display/Grouper/Grouper+Client)
 
 The uPortal parent pm.xml was upgraded to the latest GrouperClient version and a new version grouper.client.properties was added. (https://github.com/wgthom/uPortal/commit/bdedd85eaead12d91f9c02f7f516f6f0bde606a1#diff-600376dffeb79835ede4a0b285078036)
 
