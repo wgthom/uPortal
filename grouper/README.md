@@ -108,7 +108,7 @@ With this assignment, any person in the Portal Developer role will have the perm
 ### uPortal IPermissionStoreImpl and the GrouperClient
 With the permissions modeled in grouper the next step is to integrated the [GrouperClient](https://spaces.internet2.edu/display/Grouper/Grouper+Client)
 
-The uPortal parent pm.xml was upgraded to the latest GrouperClient version and a new version grouper.client.properties was added. https://github.com/wgthom/uPortal/commit/bdedd85eaead12d91f9c02f7f516f6f0bde606a1#diff-600376dffeb79835ede4a0b285078036
+The uPortal parent pom.xml was upgraded to the latest GrouperClient version and a new version grouper.client.properties was added. https://github.com/wgthom/uPortal/commit/bdedd85eaead12d91f9c02f7f516f6f0bde606a1#diff-600376dffeb79835ede4a0b285078036
 
 With the upgrade, some jar exclusions in uportal-war/pom.xml were necessary to get the project to build and run https://github.com/wgthom/uPortal/commit/40229c708fa70cf0466f10133fe0abd44b9a9504.
 
@@ -117,6 +117,23 @@ With this in place a new GrouperClientPermissionStoreImpl was created.  For the 
 https://github.com/wgthom/uPortal/blob/0d4835acdd7347bdf30d1e79823c0e695528bfb6/uportal-war/src/main/java/org/jasig/portal/security/provider/GrouperClientPermissionStoreImpl.java#L850
 
 The new GrouperClientPermissionStore is introduced via persistenceContext.xml https://github.com/wgthom/uPortal/commit/0d4835acdd7347bdf30d1e79823c0e695528bfb6#diff-782f83fdfb74ac12fbe8fa66e5619ef5
+
+# Issues
+
+## What to do about the compound subject ID "12.local.16"?
+
+uPortal expects in various places to pack and unpack this compound ID. Here are few of them:
+* [PermissionListController.getEntityBean](https://github.com/wgthom/uPortal/blob/0d4835acdd7347bdf30d1e79823c0e695528bfb6/uportal-war/src/main/java/org/jasig/portal/security/remoting/PermissionsListController.java#L175)
+
+* [AuthorizationImpl](https://github.com/wgthom/uPortal/blob/0d4835acdd7347bdf30d1e79823c0e695528bfb6/uportal-war/src/main/java/org/jasig/portal/security/provider/AuthorizationImpl.java#L671)
+
+
+
+
+
+
+
+
 
 
 
