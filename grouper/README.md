@@ -91,14 +91,24 @@ uportal-war/src/main/data/default\_entities/permission\set\Portal\_Developers\_\
 
 In order to translate this to a Grouper permission assignment we first have to take care for two other perquisites, namely creating the subject, which in this case is the role Portal Developers, and the target (or resource), which in this case is "DETAILS".
 
-Portal Developer Role
+#### Portal Developer Role
 ![Portal Developer Role](https://raw.githubusercontent.com/wgthom/uPortal/uportal-grouper/grouper/portaldevs.png)
+
 Note the ID is 12.local.16 which is an artifact of how uPortal expects the role to be represented by uPortal [AuthorizationImpl](https://github.com/Jasig/uPortal/blob/master/uportal-war/src/main/java/org/jasig/portal/security/provider/AuthorizationImpl.java#L671)
 
-
-DETAILS resource
+#### DETAILS resource
 Resource in Grouper are represented by Attribute Names available in a given Stem namespace. In this example DETAILS is the Attribute Name (i.e. resource) in the namespace apps:portal:permission:UP\_ERROR\_CHAN.
 ![DETAILS resource](https://raw.githubusercontent.com/wgthom/uPortal/uportal-grouper/grouper/detailsresource.png)
+
+Once the permission definition, the subject, and the target are defined we can make a permission assignment:
+![Error Chan Permission Assignment](https://raw.githubusercontent.com/wgthom/uPortal/uportal-grouper/grouper/errorchannelassign.png)
+
+With this assignment, any person in the Portal Developer role will have the permission to VIEW the DETAILS of the Error Channel.
+
+
+
+
+
 
 
 
