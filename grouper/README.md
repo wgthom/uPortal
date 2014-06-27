@@ -105,32 +105,15 @@ Once the permission definition, the subject, and the target are defined we can m
 
 With this assignment, any person in the Portal Developer role will have the permission to VIEW the DETAILS of the Error Channel.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Understanding uPortal Permission Model
-# Understanding Grouper Permission Model
-# Modeling uPortal Permissions in Grouper
-Roles, Actions, Hierarchy, Resources, Permission Assignments
-
-
 ### uPortal IPermissionStoreImpl and the GrouperClient
-build and pom.xml jar hell
-teaching uPortal to use the GrouperClient
+With the permissions modeled in grouper the next step is to integrated the GrouperClient.  The ![GrouperClient](https://spaces.internet2.edu/display/Grouper/Grouper+Client)
+
+The uPortal parent pm.xml was upgraded to the latest GrouperClient version and a new version grouper.client.properties was added. (https://github.com/wgthom/uPortal/commit/bdedd85eaead12d91f9c02f7f516f6f0bde606a1#diff-600376dffeb79835ede4a0b285078036)
+
+With the upgrade, some jar exclusions in uportal-war/pom.xml were necessary to get the project to build (https://github.com/wgthom/uPortal/commit/40229c708fa70cf0466f10133fe0abd44b9a9504).
+
+With this in place a new GrouperClientPermissionStoreImpl was created.  For the purposes of this exploration this file is a copy of the RDBMSPermissionStore that uses the GrouperClient to retrieve permission definitions for the Error Channel from Grouper as can be seen here:
+
+(https://github.com/wgthom/uPortal/blob/0d4835acdd7347bdf30d1e79823c0e695528bfb6/uportal-war/src/main/java/org/jasig/portal/security/provider/GrouperClientPermissionStoreImpl.java#L850)
+
 
