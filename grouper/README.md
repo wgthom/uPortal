@@ -38,6 +38,42 @@ One can map uPortal Permission concepts to Grouper as follows:
 A key part of this work is understanding how uPortal defines it's base permission model and translating that to Grouper.
 
 ## uPortal Permission Definitions
+uPortal defines a number of "default entities" in various sets of XML files in uportal-war/src/main/data/default_entities
+
+For the purposes of this exploration we are mostly concerned with:
+* Permission Definitions
+** uportal-war/src/main/data/default\_entities/permission\_owner
+* Permission Assignments
+** uportal-war/src/main/data/default\_entities/permission\_set
+
+## uPortal to Grouper Translation
+
+### Owner to Permission Definition
+uPortal Permission System Terminology defines an Owner as a "Permissions category used to organize activities."  Activities are called Actions in Grouper and are organized in Permission Definitions.
+
+uportal-war/src/main/data/default\_entities/permission\_owner\UP\_ERROR\_CHAN.permission-owner.xml provides this permission definition:
+
+```xml
+<permission-owner>
+    <name>Error Channel</name>
+    <fname>UP_ERROR_CHAN</fname>
+    <desc>Permissions controlling the rendering of the uPortal error channel</desc>
+    <activity>
+        <name>View</name>
+        <fname>VIEW</fname>
+        <desc></desc>
+        <targetProvider>errorChannelTargetProvider</targetProvider>
+    </activity>
+</permission-owner>
+```
+
+which we can translation into a Grouper Permission Definition:
+
+
+
+
+
+
 
 
 
