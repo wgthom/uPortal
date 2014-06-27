@@ -68,6 +68,8 @@ uportal-war/src/main/data/default\_entities/permission\_owner\UP\_ERROR\_CHAN.pe
 ```
 
 which we can translation into a Grouper Permission Definition:
+![Grouper Error Channel Permission Definition](https://raw.githubusercontent.com/wgthom/uPortal/uportal-grouper/grouper/up_error_chan_permDef.png)
+
 
 
 
