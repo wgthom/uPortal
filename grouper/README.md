@@ -70,6 +70,40 @@ uportal-war/src/main/data/default\_entities/permission\_owner\UP\_ERROR\_CHAN.pe
 which we can translation into a Grouper Permission Definition:
 ![Grouper Error Channel Permission Definition](https://raw.githubusercontent.com/wgthom/uPortal/uportal-grouper/grouper/up_error_chan_permDef.png)
 
+### Permission Set to Permission Assignment
+
+
+uportal-war/src/main/data/default\_entities/permission\set\Portal\_Developers\_\_VIEW\_\_UP\_ERROR\_CHAN.permission-set.xml provides this permission definition:
+
+```xml
+<permission-set script="classpath://org/jasig/portal/io/import-permission_set_v3-1.crn">
+  <owner>UP_ERROR_CHAN</owner>
+  <principal-type>org.jasig.portal.groups.IEntityGroup</principal-type>
+  <principal>
+                                                <group>Portal Developers</group>
+                                            </principal>
+  <activity>VIEW</activity>
+  <target permission-type="GRANT">
+                                                <literal>DETAILS</literal>
+                                            </target>
+</permission-set>
+```
+
+In order to translate this to a Grouper permission assignment we first have to take care for two other perquisites, namely creating the subject, which in this case is the role Portal Developers, and the target (or resource), which in this case is "DETAILS".
+
+Portal Developer Role
+![Portal Developer Role](https://github.com/wgthom/uPortal/blob/uportal-grouper/grouper/portaldevs.png)
+Note the ID is 12.local.16 which is an artifact of how uPortal expects the role to be represented by uPortal [AuthorizationImpl](https://github.com/Jasig/uPortal/blob/master/uportal-war/src/main/java/org/jasig/portal/security/provider/AuthorizationImpl.java#L671)
+
+
+DETAILS resource
+Resource in Grouper are represented by Attribute Names available in a given Stem namespace. In this example DETAILS is the Attribute Name (i.e. resource) in the namespace apps:portal:permission:UP\_ERROR\_CHAN.
+![DETAILS resource](https://github.com/wgthom/uPortal/blob/uportal-grouper/grouper/detailsresource.png)
+
+
+
+
+
 
 
 
